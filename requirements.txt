@@ -1,3 +1,4 @@
+Authomatic==0.0.10
 Django==1.7.5
 dj-database-url==0.3.0
 dj-static==0.0.6
