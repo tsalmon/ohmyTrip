@@ -1,6 +1,6 @@
 from django.db import models
 
-class Sejour:
+class Sejour(object):
 	id_sejour = -1
 
 	def __init__(self, date_begin, date_end, places, user):
@@ -15,12 +15,7 @@ class Sejour:
 	def getId(self):
 		return self.id
 
-class Lieu:
-	def __init__(self, city, country):
-		self.city = city
-		self.country = country
-
-class Factory:
+class Factory(object):
 	#TODO: make a get() method.
 	#		Which allow to get an object in a factory list by inheritance
     def __init__(self, ref):
@@ -39,7 +34,7 @@ class UserFactory(Factory):
 			return Exception("not exist")
 		return UserFactory.users[id_user]
 
-	@classmethod		
+	@classmethod
 	def create_user(self, firstname, lastname, mail, password, profil):
 		user = User(firstname, lastname, mail, password, profil)
 		UserFactory.users[user.getId()] = user
@@ -74,46 +69,71 @@ class User(models.Model):
 		self.password = password
 		self.profil = profil
 		self.id = User.id_user
+		self.profil = Profil(profil)
 		print "create user (%d)" % self.id
 
 	def getId(self):
 		return self.id
 
-class Place:
-	pass
+class Profil(object):
+
+	def __init__(self, profil_user):
+		self.profil = {}
+
+		for item in profil_user:
+			print "%s: %d" % (item, profil_user[item])
+			self.profil[item] = eval(item)(profil_user[item])
+
+
+class Place(object):
+	
+	def __init__(self, country, local):
+		pass
 
 class Region(Place):
 	points = [] # Point list
 
 class Point(Place):
-	pass
+	def __init__(self, weight_user):
+		self.weight_user = weight_user
 
 class Bar(Point):
-	pass
+	def __init__(self, weight_user):
+		super(Bar, self).__init__(weight_user)
 
 class Museum(Point):
-	pass
+	def __init__(self, weight_user):
+		super(Museum, self).__init__(weight_user)
 
 class Park(Point):
-	pass
+
+	def __init__(self, weight_user):
+		super(Park, self).__init__(weight_user)
 
 class Beach(Point):
-	pass
+	def __init__(self, weight_user):
+		super(Beach, self).__init__(weight_user)
 
 class SkyStation(Point):
-	pass
+	def __init__(self, weight_user):
+		super(SkyStation, self).__init__(weight_user)
 
 class Restaurant(Point):
-	pass
+	def __init__(self, weight_user):
+		super(Restaurant, self).__init__(weight_user)
 
 class NightClub(Point):
-	pass
+	def __init__(self, weight_user):
+		super(NightClub, self).__init__(weight_user)
 
 class Zoo(Point):
-	pass
+	def __init__(self, weight_user):
+		super(Zoo, self).__init__(weight_user)
 
 class Bridge(Point):
-	pass
+	def __init__(self, weight_user):
+		super(Bridge, self).__init__(weight_user)
 
 class Board(Point):
-	pass
+	def __init__(self, weight_user):
+		super(Board, self).__init__(weight_user)
