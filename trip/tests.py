@@ -3,7 +3,7 @@ from datetime import datetime
 from models import UserFactory, SejourFactory, Lieu
 from pprint import pprint as var_dump # PHP...
 
-class QuestionMethodTests(TestCase):
+class TripMethodTests(TestCase):
 
     def test_new_trip(self):
         """
@@ -15,4 +15,5 @@ class QuestionMethodTests(TestCase):
         lieux = [Lieu("Paris", "France"), Lieu("Nantes", "France"), Lieu("Brest", "France")]
  
         user = UserFactory.get_user(id_user)
+        sejour = SejourFactory.create_sejour(date_debut, date_fin, lieux, user)
         sejour = SejourFactory.create_sejour(date_debut, date_fin, lieux, user)
