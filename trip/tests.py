@@ -1,3 +1,18 @@
 from django.test import TestCase
+from datetime import datetime
+from models import UserFactory, SejourFactory, Lieu
+from pprint import pprint as var_dump # PHP...
 
-# Create your tests here.
+class QuestionMethodTests(TestCase):
+
+    def test_new_trip(self):
+        """
+        make a trip at Paris, Nantes and Brest from 15/07/15 to 03/08/15 
+        """
+        id_user = 0
+        date_debut = datetime(2015, 7, 15)
+        date_fin = datetime(2015, 8, 3)
+        lieux = [Lieu("Paris", "France"), Lieu("Nantes", "France"), Lieu("Brest", "France")]
+ 
+        user = UserFactory.get_user(id_user)
+        sejour = SejourFactory.create_sejour(date_debut, date_fin, lieux, user)
