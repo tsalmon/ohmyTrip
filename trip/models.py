@@ -79,3 +79,41 @@ class User(models.Model):
 	def getId(self):
 		return self.id
 
+class Place:
+	pass
+
+class Region(Place):
+	points = [] # Point list
+
+class Point(Place):
+	pass
+
+class Bar(Point):
+	pass
+
+class Museum(Point):
+	pass
+
+class Park(Point):
+	pass
+
+class Beach(Point):
+	pass
+
+class SkyStation(Point):
+	pass
+
+class Restaurant(Point):
+	pass
+
+class NightClub(Point):
+	pass
+
+class Zoo(Point):
+	pass
+
+class Bridge(Point):
+	pass
+
+class Board(Point):
+	pass
