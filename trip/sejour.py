@@ -3,7 +3,24 @@ try:
 except:
     xrange = range
 
-class Sejour:
+class Sejour(object):
+    """
+    
+    """
+    id_sejour = -1
+
+    def __init__(self, date_begin, date_end, places, user):
+        Sejour.id_sejour += 1
+        self.date_begin = date_begin
+        self.date_end = date_end
+        self.places = places
+        self.user = user
+        self.id = Sejour.id_sejour
+        print "create sejour (%d)" % self.id
+
+    def getId(self):
+        return self.id
+
     def chooses_items_per_day(items, time_limit):
         table = [[0]*(time_limit + 1) for j in xrange(len(items) + 1)]
         for j in xrange(1, len(items) + 1):
