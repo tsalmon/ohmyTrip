@@ -16,4 +16,14 @@ class TripMethodTests(TestCase):
  
         user = UserFactory.get_user(id_user)
         sejour = SejourFactory.create_sejour(date_debut, date_fin, lieux, user)
-        sejour = SejourFactory.create_sejour(date_debut, date_fin, lieux, user)
+
+    def test_create_user(self):
+    	"""
+    	create a user (just in model not in database)
+    	"""
+    	profil = {
+    		'bar' : 0,
+    		'musee' : 1,
+    		'parc' : 2
+    	}
+    	user = UserFactory.create_user("Salmon", "Thomas", "th_s@hotmail.fr", "mdp", profil)

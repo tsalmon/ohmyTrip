@@ -36,9 +36,15 @@ class UserFactory(Factory):
 	@classmethod
 	def get_user(self, id_user):
 		if id_user not in UserFactory.users:
-			UserFactory.users[id_user] = User(id_user)
+			return Exception("not exist")
 		return UserFactory.users[id_user]
-		
+
+	@classmethod		
+	def create_user(self, firstname, lastname, mail, password, profil):
+		user = User(firstname, lastname, mail, password, profil)
+		UserFactory.users[user.getId()] = user
+		return user
+
 
 class SejourFactory(Factory):
 	sejours = {}
@@ -46,7 +52,7 @@ class SejourFactory(Factory):
 	@classmethod
 	def get_sejour(self, id_sejour):
 		if id_sejour not in SejourFactory.users:
-			SejourFactory.sejours[id_sejour] = Sejour(id_sejour)
+			return Exception("not exist")
 		return SejourFactory.sejours[id_sejour]
 
 	@classmethod
@@ -54,10 +60,22 @@ class SejourFactory(Factory):
 		sejour = Sejour(date_debut, date_fin, places, user)
 		SejourFactory.sejours[sejour.getId()] = sejour
 		return sejour
-
+	
 class User(models.Model):
+	id_user = -1
 	name = models.CharField(max_length=200)
 	mail = models.EmailField(max_length=200)
 
-	def __init__(self, id_user):
-		self.l = []
+	def __init__(self, firstname, lastname, mail, password, profil):
+		User.id_user += 1
+		self.firstname = firstname
+		self.lastname = lastname
+		self.mail = mail
+		self.password = password
+		self.profil = profil
+		self.id = User.id_user
+		print "create user (%d)" % self.id
+
+	def getId(self):
+		return self.id
+
