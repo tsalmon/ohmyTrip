@@ -1,3 +1,4 @@
+from YelpHelper import query_api as yelp_request
 try:
     xrange
 except:
@@ -5,7 +6,7 @@ except:
 
 class Sejour(object):
     """
-    
+
     """
     id_sejour = -1
 
@@ -16,7 +17,19 @@ class Sejour(object):
         self.places = places
         self.user = user
         self.id = Sejour.id_sejour
+        self.getPointsActivity()
         print "create sejour (%d)" % self.id
+
+    def getPointsActivity(self):
+        self.activite = {}
+        for p in self.places:
+            self.activite[p] = []
+            for i in self.user.getProfil():
+                interet = self.user.getInteret(i)
+                if(interet == 0):
+                    continue
+                yelp_request(str(i()), str(p))
+                #self.activite[p] = []
 
     def getId(self):
         return self.id

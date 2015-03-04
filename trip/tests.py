@@ -1,6 +1,7 @@
 from django.test import TestCase
 from datetime import datetime
-from models import UserFactory, SejourFactory, Lieu
+from models import UserFactory, SejourFactory, Place
+from place import *
 from pprint import pprint as var_dump # PHP...
 
 class TripMethodTests(TestCase):
@@ -12,7 +13,7 @@ class TripMethodTests(TestCase):
         id_user = 0
         date_debut = datetime(2015, 7, 15)
         date_fin = datetime(2015, 8, 3)
-        lieux = [Lieu("Paris", "France"), Lieu("Nantes", "France"), Lieu("Brest", "France")]
+        lieux = [Place("France", "Paris"), Place("France", "Nantes"), Place("France", "Brest")]
  
         user = UserFactory.get_user(id_user)
         sejour = SejourFactory.create_sejour(date_debut, date_fin, lieux, user)
@@ -22,8 +23,8 @@ class TripMethodTests(TestCase):
     	create a user (just in model not in database)
     	"""
     	profil = {
-    		'bar' : 0,
-    		'musee' : 1,
-    		'parc' : 2
+    		Bar : 0,
+    		Museum : 1,
+    		Park : 2
     	}
     	user = UserFactory.create_user("Salmon", "Thomas", "th_s@hotmail.fr", "mdp", profil)

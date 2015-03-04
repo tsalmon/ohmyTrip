@@ -4,7 +4,7 @@ class Place(object):
 		self.local = local
 
 	def __str__(self):
-		return ("%s - %s") % (self.country, self.local)
+		return ("%s, %s") % (self.local, self.country)
 
 
 class Region(Place):
