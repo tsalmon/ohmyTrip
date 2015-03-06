@@ -5,21 +5,21 @@ try:
 except:
     xrange = range
 
-class Sejour(object):
+class Trip(object):
     """
 
     """
     id_sejour = -1
 
     def __init__(self, date_begin, date_end, places, user):
-        Sejour.id_sejour += 1
+        Trip.id_sejour += 1
         self.date_begin = date_begin
         self.date_end = date_end
         self.places = places
         self.user = user
-        self.id = Sejour.id_sejour
+        self.id = Trip.id_sejour
         self.getPointsActivity()
-        print "create sejour (%d)" % self.id
+        print "create trip (%d)" % self.id
 
     def getPointsActivity(self):
         #TODO: delete return

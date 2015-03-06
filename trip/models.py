@@ -1,6 +1,6 @@
 from django.db import models
 from place import *
-from sejour import Sejour
+from trip import Trip
 from user import User
 from pprint import pprint as var_dump
 
@@ -30,18 +30,18 @@ class UserFactory(Factory):
 		return user
 
 
-class SejourFactory(Factory):
+class TripFactory(Factory):
 	sejours = {}
 
 	@classmethod
 	def get_sejour(self, id_sejour):
-		if id_sejour not in SejourFactory.users:
+		if id_sejour not in TripFactory.users:
 			return Exception("not exist")
-		return SejourFactory.sejours[id_sejour]
+		return TripFactory.sejours[id_sejour]
 
 	@classmethod
 	def create_sejour(self, date_debut, date_fin, places, user):
-		sejour = Sejour(date_debut, date_fin, places, user)
-		SejourFactory.sejours[sejour.getId()] = sejour
+		sejour = Trip(date_debut, date_fin, places, user)
+		TripFactory.sejours[sejour.getId()] = sejour
 		return sejour
 
