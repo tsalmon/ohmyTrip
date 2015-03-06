@@ -1,4 +1,5 @@
 from YelpHelper import query_api as yelp_request
+from place import *
 try:
     xrange
 except:
@@ -21,15 +22,22 @@ class Sejour(object):
         print "create sejour (%d)" % self.id
 
     def getPointsActivity(self):
+        #TODO: delete return
         self.activite = {}
+        
         for p in self.places:
+            print "place %s" % p
             self.activite[p] = []
+            list_active = []
             for i in self.user.getProfil():
+                print "activite %s" % i
                 interet = self.user.getInteret(i)
                 if(interet == 0):
                     continue
-                yelp_request(str(i()), str(p))
-                #self.activite[p] = []
+                list_active.append(i)
+            y = yelp_request(list_active, p)
+            self.activite[p] += y
+        pprint.pprint(self.activite)
 
     def getId(self):
         return self.id

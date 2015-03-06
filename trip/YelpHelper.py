@@ -25,10 +25,14 @@ import urllib2
 
 import oauth2
 
+#CONFIG FILES 
 from homytrip.secret_settings import YELP_CONSUMER_KEY as CONSUMER_KEY
 from homytrip.secret_settings import YELP_CONSUMER_SECRET as CONSUMER_SECRET
 from homytrip.secret_settings import YELP_TOKEN as TOKEN
 from homytrip.secret_settings import YELP_TOKEN_SECRET as TOKEN_SECRET
+
+#MODELS
+from place import *
 
 
 API_HOST = 'api.yelp.com'
@@ -78,7 +82,7 @@ def request(host, path, url_params=None):
     oauth_request.sign_request(oauth2.SignatureMethod_HMAC_SHA1(), consumer, token)
     signed_url = oauth_request.to_url()
     
-    print u'Querying {0} ...'.format(url)
+    #print u'Querying {0} ...'.format(url)
 
     conn = urllib2.urlopen(signed_url, None)
     try:
@@ -126,29 +130,26 @@ def query_api(term, location):
         term (str): The search term to query.
         location (str): The location of the business to query.
     """
-    response = search(term, location)
+    places = []
+    response = search(term.__name__, str(location))
 
     businesses = response.get('businesses')
 
     if not businesses:
-        print u'No businesses for {0} in {1} found.'.format(term, location)
-        return
+        print u'No businesses for {0} in {1} found.'.format(term(0), location)
+        return []
 
     ret_str = ""
     for i in range(0, len(businesses)):
         business_id = businesses[i]['id']
+        response = get_business(business_id)
+        adresse = response[u'location'][u'display_address']
+        coordinate = response[u'location'][u'coordinate']
+        name = response[u'name']
+        places.append(term(adresse, coordinate, name))
 
-        #print u'{0} businesses found, querying business info for the top result "{1}" ...'.format(
-        #    len(businesses),
-        #    business_id
-        #)
+    return places  
 
-        response = get_business(business_id)[u'location']
-
-        #print u'Result for business "{0}" found:'.format(business_id)
-        pprint.pprint(response, indent=2)
-        #print ""
-        
 def main():
     try:
         return query_api(DEFAULT_TERM, DEFAULT_LOCATION)

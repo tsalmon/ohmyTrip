@@ -4,8 +4,8 @@ from models import UserFactory, SejourFactory, Place
 from place import *
 from pprint import pprint as var_dump # PHP...
 
-class TripMethodTests(TestCase):
 
+class TripMethodTests(TestCase):
     def test_new_trip(self):
         """
         make a trip at Paris, Nantes and Brest from 15/07/15 to 03/08/15 
@@ -13,7 +13,12 @@ class TripMethodTests(TestCase):
         id_user = 0
         date_debut = datetime(2015, 7, 15)
         date_fin = datetime(2015, 8, 3)
-        lieux = [Place("France", "Paris"), Place("France", "Nantes"), Place("France", "Brest")]
+
+        paris  = City('Paris', "France", "Ile-De-France")
+        nantes = City("Nantes", "France", "Pays-de-la-Loire")
+        brest  = City("Brest", "France", "Bretagne")
+
+        lieux = [paris, nantes, brest]
  
         user = UserFactory.get_user(id_user)
         sejour = SejourFactory.create_sejour(date_debut, date_fin, lieux, user)
@@ -23,7 +28,7 @@ class TripMethodTests(TestCase):
     	create a user (just in model not in database)
     	"""
     	profil = {
-    		Bar : 0,
+    		Bar : 1,
     		Museum : 1,
     		Park : 2
     	}

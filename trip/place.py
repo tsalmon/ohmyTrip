@@ -1,18 +1,20 @@
 import pprint
 
 class Place(object):
-	def __init__(self, address, coordinate=None, name=None):
-		self.local = address["local"]	
+	def __init__(self, name, address=None, coordinate=None):
+		self.address = address
+		self.coordinate = coordinate
+		self.name = name
 
 	def getTypePlace():
 		return "toto"
 
 	def __str__(self):
-		return ("%s") % (self.local)
+		return ("%s") % (self.name)
 
 	def getLocation(self):
 		#TODO
-		pass
+			pass
 
 class Country(Place):
 	def __init__(self, country_name):
@@ -20,15 +22,18 @@ class Country(Place):
 
 class City(Place):
 	def __init__(self, city_name, country_name, region_name):
+		super(City, self).__init__(city_name)
 		self.name = city_name
-		self.region = Region(region_name, country_name)
 		self.country = Country(country_name)
+		self.region = Region(region_name, self.country)
 
 class Region(Place):
 	points = [] # Point list
 
-	def __init__(self, region_name):
+	def __init__(self, region_name, country):
+		super(Region, self).__init__(region_name)
 		self.name = region_name
+		self.country = country
 
 class Point(Place):
 	def __init__(self, address, coordinate, name):
