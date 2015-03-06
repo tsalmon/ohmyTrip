@@ -1,12 +1,17 @@
 Authomatic==0.0.10
 Django==1.7.5
+coverage==3.7.1
 dj-database-url==0.3.0
 dj-static==0.0.6
+django-coverage==1.2.4
 django-toolbelt==0.0.1
 facebook-sdk==0.4.0
 gunicorn==19.2.1
 httplib2==0.9
 oauth2==1.5.211
 psycopg2==2.6
+py==1.4.26
 static3==0.5.1
+tox==1.8.0
+virtualenv==12.0.6
 wsgiref==0.1.2
