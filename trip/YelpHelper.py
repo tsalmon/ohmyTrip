@@ -43,12 +43,6 @@ SEARCH_LIMIT = 5
 SEARCH_PATH = '/v2/search/'
 BUSINESS_PATH = '/v2/business/'
 
-# OAuth credential placeholders that must be filled in by users.
-#CONSUMER_KEY = "6IQkM8kAU5V0rdj3ARmJDg"
-#CONSUMER_SECRET = "1KYi-AqLMfnUA5dEtVTC57hCQsE"
-#TOKEN = "C95bFlBa2GurrO9pgTJIr4QTzfWBW2N5"
-#TOKEN_SECRET = "qhsQ2i0Ue99wPUC7UVphZAGuz_M"
-
 
 def request(host, path, url_params=None):
     """Prepares OAuth authentication and sends the request to the API.
@@ -130,6 +124,7 @@ def query_api(term, location):
         term (str): The search term to query.
         location (str): The location of the business to query.
     """
+    places = []
     response = search(term.__name__, str(location))
 
     businesses = response.get('businesses')
