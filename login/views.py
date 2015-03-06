@@ -2,15 +2,20 @@ from django.http import HttpResponse
 from authomatic import Authomatic
 from authomatic.adapters import DjangoAdapter
 
-from config import CONFIG
+#from config import CONFIG
+from homytrip.secret_settings import AUTHOMATIC_CONFIG 
 
-authomatic = Authomatic(CONFIG, 'a super secret random string')
+authomatic = Authomatic(AUTHOMATIC_CONFIG , 'a super secret random string')
+
+import yelp_helper
 
 def home(request):
     # Create links and OpenID form to the Login handler.
-    return HttpResponse('''
-        Login with <a href="fb">Facebook</a>.<br />
-    ''')
+    return HttpResponse(yelp_helper.main())
+    
+#return HttpResponse('''
+#    Login with <a href="fb">Facebook</a>.<br />
+#''')
 
 #source : https://github.com/peterhudec/authomatic/blob/master/examples/django/example/simple/views.py
 def login(request, provider_name):
