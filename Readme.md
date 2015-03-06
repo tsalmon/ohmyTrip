@@ -7,6 +7,7 @@ Know your futur travel
 ## Secrets settings 
 
 To make this application runnable, you have to add a file name `secret_settings.py` into the `hometrip` folder, which allow you to communicate with Api used by the application (at this point(6/03/2015), we use facebook connect, google place and yelp api).
+
 Paste the following code into this file, and go to links specified to see what to do.
 
 ```python
