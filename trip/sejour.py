@@ -26,17 +26,13 @@ class Sejour(object):
         self.activite = {}
         
         for p in self.places:
-            print "place %s" % p
             self.activite[p] = []
-            list_active = []
             for i in self.user.getProfil():
-                print "activite %s" % i
                 interet = self.user.getInteret(i)
                 if(interet == 0):
                     continue
-                list_active.append(i)
-            y = yelp_request(list_active, p)
-            self.activite[p] += y
+                y = yelp_request(i, p)
+                self.activite[p] += y
         pprint.pprint(self.activite)
 
     def getId(self):

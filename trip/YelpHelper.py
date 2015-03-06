@@ -130,7 +130,6 @@ def query_api(term, location):
         term (str): The search term to query.
         location (str): The location of the business to query.
     """
-    places = []
     response = search(term.__name__, str(location))
 
     businesses = response.get('businesses')
