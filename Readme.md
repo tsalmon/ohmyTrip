@@ -21,8 +21,8 @@ SECRET_KEY = # see: http://www.miniwebtool.com/django-secret-keygenerator/
 
 DATABASES = { # see: https://docs.djangoproject.com/en/1.7/ref/databases/
     'default': {
-        'ENGINE': ,
-        'NAME': ,
+        'ENGINE': '',
+        'NAME': '',
     }
 }
 
@@ -32,12 +32,12 @@ from authomatic.providers import oauth2#, oauth1, gaeopenid
 
 AUTHOMATIC_CONFIG = {
     'fb': {
-        'class_': ,
+        'class_': '',
         # Facebook is an AuthorizationProvider too.
         'consumer_key': '',
         'consumer_secret': '',
         # But it is also an OAuth 2.0 provider and it needs scope.
-        'scope': ,
+        'scope': '',
     }
 }
 
