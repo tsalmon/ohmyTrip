@@ -29,6 +29,7 @@ class TripMethodTests(TestCase):
         user = UserFactory.get_user(id_user)
         sejour = TripFactory.create_sejour(date_debut, date_fin, lieux, user)
 
+
     def test_new_trip_shorter_than_periode(self):
         """
         make a trip at Paris, Nantes and Brest from 15/07/15 to 03/08/15 
@@ -38,8 +39,8 @@ class TripMethodTests(TestCase):
         date_fin = datetime(2015, 8, 3)
 
         lieux = self.getCities()        
-        user = UserFactory.get_user(id_user)
-        sejour = TripFactory.create_sejour(date_debut, date_fin, lieux, user)
+        #user = UserFactory.get_user(id_user)
+        #sejour = TripFactory.create_sejour(date_debut, date_fin, lieux, user)
 
     def test_create_user(self):
     	"""

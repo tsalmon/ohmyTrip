@@ -21,7 +21,7 @@ class Trip(object):
         self.places = places
         self.user = user
         self.id = Trip.id_sejour
-        self.getPointsActivity()
+        self.makeTrip()
         print "create trip (%d)" % self.id
 
     def placesToString(self, liste_place):
@@ -33,42 +33,58 @@ class Trip(object):
     def getTripNbDays(self, daily_trip):
         return sum([len(v) for v in daily_trip])
 
+    def makeTrip(self):
+        points = self.getPointsActivity()
+        daily_trip = self.splitActivityDays(points)
+        days_trip = self.getTripNbDays(daily_trip)
+        #while(True): TODO
+        if(days_trip > self.periode.days): 
+            self.reduceTrip(daily_trip, days_trip)
+        elif (days_trip < self.periode.days): 
+            self.extendsTrip(daily_trip, days_trip)
+        else:
+            return days_trip
+
     def getPointsActivity(self):
         #TODO: delete return
-        self.activite = {}
+        activite = {}
             
         for p in self.places:
-            self.activite[p] = []
+            activite[p] = []
             for i in self.user.getProfil():
                 interet = self.user.getInteret(i)
                 y = yelp_request(i, p)
-                self.activite[p] += y
+                activite[p] += y
+        return activite
 
+    def splitActivityDays(self, activite):
         daily_trip = []
         villes = []
-
-        for place in self.activite:
-            print "(%s)-------------" % (place)
-            liste_place = self.activite[place]
+        for place in activite:
+            liste_place = activite[place]
             jours = []
             jour = 0
             while(len(liste_place) > 0):
                 l = self.chooses_items_per_day(liste_place, 720)
                 liste_place = [i for i in liste_place if i not in l]
-                print "Jour %d/%s : %d/%d ---------" % (jour+1, place, len(l), len(liste_place))
-                self.placesToString(l)
                 jours += [l]
                 jour += 1
             villes += jours
-
-        print "-----------------"
         daily_trip += [villes]
-        pprint.pprint(daily_trip)
+        return daily_trip
+
+    def reduceTrip(self, daily_trip, nb_days):
         nb_days =  self.getTripNbDays(daily_trip)
         while(nb_days > self.periode.days):
             print "%d  > %d"  % (self.periode.days, nb_days)
             nb_days -= 1
-            
+
+    def extendsTrip(self, daily_trip, nb_days):
+        nb_days =  self.getTripNbDays(daily_trip)
+        while(nb_days < self.periode.days):
+            print "%d  > %d"  % (self.periode.days, nb_days)
+            nb_days += 1
+
     def getId(self):
         return self.id
 
