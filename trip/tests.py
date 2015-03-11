@@ -34,6 +34,5 @@ class TripMethodTests(TestCase):
     		Museum : 1,
             Bar: 2,
             Bridge : 1,
-            LocalFlavor : 2
     	}
     	user = UserFactory.create_user("Salmon", "Thomas", "th_s@hotmail.fr", "mdp", profil)

@@ -17,6 +17,7 @@ class Trip(object):
         Trip.id_sejour += 1
         self.date_begin = date_begin
         self.date_end = date_end
+        self.periode = date_end - date_begin
         self.places = places
         self.user = user
         self.id = Trip.id_sejour
@@ -39,19 +40,24 @@ class Trip(object):
                 interet = self.user.getInteret(i)
                 y = yelp_request(i, p)
                 self.activite[p] += y
-
+        daily_trip = []
+        villes = []
         for place in self.activite:
             print "(%s)-------------" % (place)
             liste_place = self.activite[place]
-            self.placesToString(liste_place)
-            jour = 1
+            jours = []
+            jour = 0
             while(len(liste_place) > 0):
                 l = self.chooses_items_per_day(liste_place, 720)
                 liste_place = [i for i in liste_place if i not in l]
-                print "Jour %d/%s : %d/%d ---------" % (jour, place, len(l), len(liste_place))
-                self.placesToString(liste_place)
+                print "Jour %d/%s : %d/%d ---------" % (jour+1, place, len(l), len(liste_place))
                 self.placesToString(l)
-                jour = jour + 1
+                jours += [l]
+                jour += 1
+            villes += jours
+        print "-----------------"
+        daily_trip += villes
+        pprint.pprint(daily_trip)
 
     def getId(self):
         return self.id
