@@ -23,10 +23,16 @@ class Trip(object):
         self.getPointsActivity()
         print "create trip (%d)" % self.id
 
+    def placesToString(self, liste_place):
+        s = ""
+        for i in liste_place:
+            s += " " + unicode(i)
+        print unicode(s)
+
     def getPointsActivity(self):
         #TODO: delete return
         self.activite = {}
-        
+            
         for p in self.places:
             self.activite[p] = []
             for i in self.user.getProfil():
@@ -35,7 +41,21 @@ class Trip(object):
                 self.activite[p] += y
 
         for place in self.activite:
-            print self.chooses_items_per_day(self.activite[place], 720)
+            print "(%s)-------------" % (place)
+            liste_place = self.activite[place]
+            self.placesToString(liste_place)
+            jour = 1
+            while(len(liste_place) > 0):
+                l = self.chooses_items_per_day(liste_place, 720)
+                liste_place = [i for i in liste_place if i not in l]
+                print "Jour %d : %d ---------" % (jour, len(l))
+                self.placesToString(l)
+                jour = jour + 1
+
+        print ""
+        print ""
+        print ""
+        print ""
 
     def getId(self):
         return self.id

@@ -55,7 +55,7 @@ class Point(Place):
 
 	def __str__(self):
 		#TODO: return default string value for a point object
-		return "point str"
+		return u"(%s, %s, %s)" % (self.infos[u"name"], self.infos[u"rating"], self.infos[u"review_count"])
 
 class Bar(Point):
 	estimation = 60.0
@@ -65,7 +65,7 @@ class Bar(Point):
 		super(Bar, self).__init__(infos)
 
 	def __str__(self):
-		return "bar " + super(Bar).__str__()
+		return "bar = %s" % super(Bar, self).__str__()
 
 class Museum(Point):
 	estimation = 120
@@ -75,7 +75,7 @@ class Museum(Point):
 		super(Museum, self).__init__(infos)
 
 	def __str__(self):
-		return "museum" + super(Museum).__str__()
+		return "museum = %s" % super(Museum, self).__str__()
 
 class Park(Point):
 	estimation = 45
@@ -145,7 +145,7 @@ class Bridge(Point):
 		super(Bridge, self).__init__(infos)
 
 	def __str__(self):
-		return "pont" + super(Bridge).__str__
+		return "Pont : %s" % super(Bridge, self).__str__()
 
 class Board(Point):
 	estimation = 30
