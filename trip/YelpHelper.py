@@ -136,10 +136,8 @@ def query_api(term, location):
         print u'No businesses for {0} in {1} found.'.format(term.__name__, str(location))
         return []
 
-    print "---------------------------------------------------------"
     for i in range(0, len(businesses)):
         t = term(businesses[i])
-        print(t.infos)
         places.append(term(businesses[i]))
 
     return places  
