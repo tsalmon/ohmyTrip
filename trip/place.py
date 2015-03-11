@@ -1,3 +1,5 @@
+# -*- coding: UTF-8 -*-
+
 import pprint
 
 class Place(object):
@@ -36,8 +38,8 @@ class Region(Place):
 		self.country = country
 
 class Point(Place):
-	def __init__(self, address, coordinate, name):
-		self.address, coordinate, name = address, coordinate, name
+	def __init__(self, infos):
+		self.infos = infos
 
 	def __str__(self):
 		#TODO: return default string value for a point object
@@ -45,71 +47,98 @@ class Point(Place):
 
 class Bar(Point):
 
-	def __init__(self, address, coordinate, name):
-		super(Bar, self).__init__(address, coordinate, name)
+	def __init__(self, infos):
+		super(Bar, self).__init__(infos)
 
 	def __str__(self):
 		return "bar"
 
 class Museum(Point):
-	def __init__(self, address, coordinate, name):
-		super(Museum, self).__init__(address, coordinate, name)
+	estimation_zoo = 120
+	estimation_zoo_amplitude = 4
+
+	def __init__(self, infos):
+		super(Museum, self).__init__(infos)
 
 	def __str__(self):
 		return "musem"
 
 class Park(Point):
-	def __init__(self, address, coordinate, name):
-		super(Park, self).__init__(address, coordinate, name)
+	estimation_zoo = 45
+	estimation_zoo_amplitude = 5
+
+	def __init__(self, infos):
+		super(Park, self).__init__(infos)
 
 	def __str__(self):
 		return "park"
 
 class Beach(Point):
-	def __init__(self, address, coordinate, name):
-		super(Beach, self).__init__(address, coordinate, name)
+	estimation_zoo = 120
+	estimation_zoo_amplitude = 4
+
+	def __init__(self, infos):
+		super(Beach, self).__init__(infos)
 
 	def __str__(self):
 		return "beach"
 
 class SkyStation(Point):
-	def __init__(self, address, coordinate, name):
-		super(SkyStation, self).__init__(address, coordinate, name)
+	estimation_zoo = 120
+	estimation_zoo_amplitude = 4
+
+	def __init__(self, infos):
+		super(SkyStation, self).__init__(infos)
 
 	def __str__(self):
 		return "sky"
 
 class Restaurant(Point):
-	def __init__(self, address, coordinate, name):
-		super(Restaurant, self).__init__(address, coordinate, name)
+	estimation_zoo = 30
+	estimation_zoo_amplitude = 3
+
+	def __init__(self, infos):
+		super(Restaurant, self).__init__(infos)
 
 	def __str__(self):
 		return "restaurant"
 
 class NightClub(Point):
-	def __init__(self, address, coordinate, name):
-		super(NightClub, self).__init__(address, coordinate, name)
+	estimation_nightclub = 300
+	estimation_nightclub_amplitude = 1.5
+
+	def __init__(self, infos):
+		super(NightClub, self).__init__(infos)
 
 	def __str__(self):
 		return "boite de nuit"
 
 class Zoo(Point):
-	def __init__(self, address, coordinate, name):
-		super(Zoo, self).__init__(address, coordinate, name)
+	estimation_zoo = 60
+	estimation_zoo_amplitude = 1.5
+
+	def __init__(self, infos):
+		super(Zoo, self).__init__(infos)
 
 	def __str__(self):
 		return "zoo"
 
 class Bridge(Point):
-	def __init__(self, address, coordinate, name):
-		super(Bridge, self).__init__(address, coordinate, name)
+	estimation_zoo = 10
+	estimation_zoo_amplitude = 3
+
+	def __init__(self, infos):
+		super(Bridge, self).__init__(infos)
 
 	def __str__(self):
 		return "pont"
 
 class Board(Point):
-	def __init__(self, address, coordinate, name):
-		super(Board, self).__init__(address, coordinate, name)
+	estimation_zoo = 30
+	estimation_zoo_amplitude = 2
+
+	def __init__(self, infos):
+		super(Board, self).__init__(infos)
 
 	def __str__(self):
 		return "port"

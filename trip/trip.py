@@ -1,3 +1,5 @@
+# -*- coding: UTF-8 -*-
+
 from YelpHelper import query_api as yelp_request
 from place import *
 try:
@@ -33,7 +35,6 @@ class Trip(object):
                     continue
                 y = yelp_request(i, p)
                 self.activite[p] += y
-        pprint.pprint(self.activite)
 
     def getId(self):
         return self.id

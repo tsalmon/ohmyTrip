@@ -1,3 +1,5 @@
+# -*- coding: UTF-8 -*-
+
 from django.views import generic
 from django.shortcuts import render
 from . import models

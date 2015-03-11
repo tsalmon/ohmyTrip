@@ -1,3 +1,5 @@
+# -*- coding: UTF-8 -*-
+
 from django.test import TestCase
 from datetime import datetime
 from models import UserFactory, TripFactory, Place
@@ -17,8 +19,9 @@ class TripMethodTests(TestCase):
         paris  = City('Paris', "France", "Ile-De-France")
         nantes = City("Nantes", "France", "Pays-de-la-Loire")
         brest  = City("Brest", "France", "Bretagne")
-        
-        lieux = [paris, nantes, brest]
+        hambourg = City("Hambourg", "Allemagne", "Hambourg")
+
+        lieux = [brest]
         
         user = UserFactory.get_user(id_user)
         sejour = TripFactory.create_sejour(date_debut, date_fin, lieux, user)
@@ -28,6 +31,8 @@ class TripMethodTests(TestCase):
     	create a user (just in model not in database)
     	"""
     	profil = {
-    		Museum : 1
+    		Museum : 1,
+            Bar: 2,
+            Bridge : 1
     	}
     	user = UserFactory.create_user("Salmon", "Thomas", "th_s@hotmail.fr", "mdp", profil)

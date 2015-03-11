@@ -133,27 +133,19 @@ def query_api(term, location):
     businesses = response.get('businesses')
 
     if not businesses:
-        print u'No businesses for {0} in {1} found.'.format(term, location)
+        print u'No businesses for {0} in {1} found.'.format(term.__name__, str(location))
         return []
 
     print "---------------------------------------------------------"
     for i in range(0, len(businesses)):
-        #print "rating = %s" % businesses[i][u'rating']
-        #print "count review = %s" % businesses[i][u'count_review']
-        #print ""
-        pprint.pprint(businesses[i])
-        return []
-        business_id = businesses[i]['id']
-        response = get_business(business_id)
-        adresse = response[u'location'][u'display_address']
-        coordinate = response[u'location'][u'coordinate']
-        name = response[u'name']
-        places.append(term(adresse, coordinate, name))
+        t = term(businesses[i])
+        print(t.infos)
+        places.append(term(businesses[i]))
 
     return places  
 
 def main():
-    try:
+    try:    
         return query_api(DEFAULT_TERM, DEFAULT_LOCATION)
     except urllib2.HTTPError as error:
         sys.exit('Encountered HTTP error {0}. Abort program.'.format(error.code))
