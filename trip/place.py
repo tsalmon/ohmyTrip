@@ -46,6 +46,8 @@ class Point(Place):
 		return "point str"
 
 class Bar(Point):
+	estimation_museum = 60
+	estimation_museum_amplitude = 2.5
 
 	def __init__(self, infos):
 		super(Bar, self).__init__(infos)
@@ -54,8 +56,8 @@ class Bar(Point):
 		return "bar"
 
 class Museum(Point):
-	estimation_zoo = 120
-	estimation_zoo_amplitude = 4
+	estimation_museum = 120
+	estimation_museum_amplitude = 4
 
 	def __init__(self, infos):
 		super(Museum, self).__init__(infos)
@@ -64,8 +66,8 @@ class Museum(Point):
 		return "musem"
 
 class Park(Point):
-	estimation_zoo = 45
-	estimation_zoo_amplitude = 5
+	estimation_park = 45
+	estimation_park_amplitude = 5
 
 	def __init__(self, infos):
 		super(Park, self).__init__(infos)
@@ -74,8 +76,8 @@ class Park(Point):
 		return "park"
 
 class Beach(Point):
-	estimation_zoo = 120
-	estimation_zoo_amplitude = 4
+	estimation_beach = 120
+	estimation_beach_amplitude = 4
 
 	def __init__(self, infos):
 		super(Beach, self).__init__(infos)
@@ -84,8 +86,8 @@ class Beach(Point):
 		return "beach"
 
 class SkyStation(Point):
-	estimation_zoo = 120
-	estimation_zoo_amplitude = 4
+	estimation_sky = 120
+	estimation_sky_amplitude = 4
 
 	def __init__(self, infos):
 		super(SkyStation, self).__init__(infos)
@@ -94,8 +96,8 @@ class SkyStation(Point):
 		return "sky"
 
 class Restaurant(Point):
-	estimation_zoo = 30
-	estimation_zoo_amplitude = 3
+	estimation_restaurant = 30
+	estimation_restaurant_amplitude = 3
 
 	def __init__(self, infos):
 		super(Restaurant, self).__init__(infos)
@@ -124,8 +126,8 @@ class Zoo(Point):
 		return "zoo"
 
 class Bridge(Point):
-	estimation_zoo = 10
-	estimation_zoo_amplitude = 3
+	estimation_bridge = 10
+	estimation_bridge_amplitude = 3
 
 	def __init__(self, infos):
 		super(Bridge, self).__init__(infos)
@@ -134,8 +136,8 @@ class Bridge(Point):
 		return "pont"
 
 class Board(Point):
-	estimation_zoo = 30
-	estimation_zoo_amplitude = 2
+	estimation_board = 30
+	estimation_board_amplitude = 2
 
 	def __init__(self, infos):
 		super(Board, self).__init__(infos)
