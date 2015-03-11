@@ -124,17 +124,25 @@ def query_api(term, location):
         term (str): The search term to query.
         location (str): The location of the business to query.
     """
+    
+    #print ("%s %s") % (term.__name__, location)
+    #return []
     places = []
     response = search(term.__name__, str(location))
 
     businesses = response.get('businesses')
 
     if not businesses:
-        print u'No businesses for {0} in {1} found.'.format(term(0), location)
+        print u'No businesses for {0} in {1} found.'.format(term, location)
         return []
 
-    ret_str = ""
+    print "---------------------------------------------------------"
     for i in range(0, len(businesses)):
+        #print "rating = %s" % businesses[i][u'rating']
+        #print "count review = %s" % businesses[i][u'count_review']
+        #print ""
+        pprint.pprint(businesses[i])
+        return []
         business_id = businesses[i]['id']
         response = get_business(business_id)
         adresse = response[u'location'][u'display_address']

@@ -1,4 +1,3 @@
-from YelpHelper import query_api as yelp_request
 from place import *
 try:
     xrange
