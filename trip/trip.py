@@ -43,8 +43,10 @@ class Trip(object):
                 interet = self.user.getInteret(i)
                 y = yelp_request(i, p)
                 self.activite[p] += y
+
         daily_trip = []
         villes = []
+
         for place in self.activite:
             print "(%s)-------------" % (place)
             liste_place = self.activite[place]
@@ -58,12 +60,15 @@ class Trip(object):
                 jours += [l]
                 jour += 1
             villes += jours
+
         print "-----------------"
         daily_trip += [villes]
         pprint.pprint(daily_trip)
-        print self.getTripNbDays(daily_trip)
-        #while(self.periode > )
-
+        nb_days =  self.getTripNbDays(daily_trip)
+        while(nb_days > self.periode.days):
+            print "%d  > %d"  % (self.periode.days, nb_days)
+            nb_days -= 1
+            
     def getId(self):
         return self.id
 

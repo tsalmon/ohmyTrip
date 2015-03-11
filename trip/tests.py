@@ -8,7 +8,16 @@ from pprint import pprint as var_dump # PHP...
 
 
 class TripMethodTests(TestCase):
-    def test_new_trip(self):
+
+    def getCities(self):
+        paris  = City('Paris', "France", "Ile-De-France")
+        nantes = City("Nantes", "France", "Pays-de-la-Loire")
+        brest  = City("Brest", "France", "Bretagne")
+        hambourg = City("Hambourg", "Allemagne", "Hambourg")
+        return [paris, nantes, brest]
+
+
+    def test_new_trip_longer_than_periode(self):
         """
         make a trip at Paris, Nantes and Brest from 15/07/15 to 03/08/15 
         """
@@ -16,13 +25,19 @@ class TripMethodTests(TestCase):
         date_debut = datetime(2015, 7, 15)
         date_fin = datetime(2015, 8, 3)
 
-        paris  = City('Paris', "France", "Ile-De-France")
-        nantes = City("Nantes", "France", "Pays-de-la-Loire")
-        brest  = City("Brest", "France", "Bretagne")
-        hambourg = City("Hambourg", "Allemagne", "Hambourg")
+        lieux = self.getCities()        
+        user = UserFactory.get_user(id_user)
+        sejour = TripFactory.create_sejour(date_debut, date_fin, lieux, user)
 
-        lieux = [paris, nantes, brest]
-        
+    def test_new_trip_shorter_than_periode(self):
+        """
+        make a trip at Paris, Nantes and Brest from 15/07/15 to 03/08/15 
+        """
+        id_user = 0
+        date_debut = datetime(2015, 7, 25)
+        date_fin = datetime(2015, 8, 3)
+
+        lieux = self.getCities()        
         user = UserFactory.get_user(id_user)
         sejour = TripFactory.create_sejour(date_debut, date_fin, lieux, user)
 
