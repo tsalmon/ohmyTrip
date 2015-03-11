@@ -30,6 +30,9 @@ class Trip(object):
             s += " " + unicode(i)
         print unicode(s)
 
+    def getTripNbDays(self, daily_trip):
+        return sum([len(v) for v in daily_trip])
+
     def getPointsActivity(self):
         #TODO: delete return
         self.activite = {}
@@ -56,8 +59,10 @@ class Trip(object):
                 jour += 1
             villes += jours
         print "-----------------"
-        daily_trip += villes
+        daily_trip += [villes]
         pprint.pprint(daily_trip)
+        print self.getTripNbDays(daily_trip)
+        #while(self.periode > )
 
     def getId(self):
         return self.id
