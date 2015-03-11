@@ -21,7 +21,7 @@ class TripMethodTests(TestCase):
         brest  = City("Brest", "France", "Bretagne")
         hambourg = City("Hambourg", "Allemagne", "Hambourg")
 
-        lieux = [paris]
+        lieux = [paris, nantes, brest]
         
         user = UserFactory.get_user(id_user)
         sejour = TripFactory.create_sejour(date_debut, date_fin, lieux, user)
@@ -33,6 +33,7 @@ class TripMethodTests(TestCase):
     	profil = {
     		Museum : 1,
             Bar: 2,
-            Bridge : 1
+            Bridge : 1,
+            LocalFlavor : 2
     	}
     	user = UserFactory.create_user("Salmon", "Thomas", "th_s@hotmail.fr", "mdp", profil)

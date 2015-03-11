@@ -48,14 +48,10 @@ class Trip(object):
             while(len(liste_place) > 0):
                 l = self.chooses_items_per_day(liste_place, 720)
                 liste_place = [i for i in liste_place if i not in l]
-                print "Jour %d : %d ---------" % (jour, len(l))
+                print "Jour %d/%s : %d/%d ---------" % (jour, place, len(l), len(liste_place))
+                self.placesToString(liste_place)
                 self.placesToString(l)
                 jour = jour + 1
-
-        print ""
-        print ""
-        print ""
-        print ""
 
     def getId(self):
         return self.id
@@ -77,7 +73,6 @@ class Trip(object):
                 else:
                     table[j][w] = max(table[j-1][w],
                                       table[j-1][w-time] + val)
-
         result = []
         w = time_limit
         for j in range(len(items), 0, -1):

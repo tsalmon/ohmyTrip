@@ -135,7 +135,8 @@ def query_api(term, location):
         return []
 
     for i in range(0, len(businesses)):
-        t = term(businesses[i])
+        if(int(businesses[i][u'rating']) == 0 or int(businesses[i]["review_count"]) == 0):
+            continue
         places.append(term(businesses[i]))
 
     return places  

@@ -156,3 +156,12 @@ class Board(Point):
 
 	def __str__(self):
 		return "port"
+
+class LocalFlavor(Point):
+	estimation = 60
+	estimation_amplitude = 3
+	def __init__(self, infos):
+		super(LocalFlavor, self).__init__(infos)
+
+	def __str__(self):
+		return "localflavor"
