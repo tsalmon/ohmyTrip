@@ -125,8 +125,6 @@ def query_api(term, location):
         location (str): The location of the business to query.
     """
     
-    #print ("%s %s") % (term.__name__, location)
-    #return []
     places = []
     response = search(term.__name__, str(location))
 
