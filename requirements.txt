@@ -6,9 +6,11 @@ dj-static==0.0.6
 django-coverage==1.2.4
 django-toolbelt==0.0.1
 facebook-sdk==0.4.0
+foursquare==20130707
 gunicorn==19.2.1
 httplib2==0.9
 oauth2==1.5.211
+poster==0.8.1
 psycopg2==2.6
 py==1.4.26
 static3==0.5.1
