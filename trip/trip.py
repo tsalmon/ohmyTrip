@@ -37,10 +37,6 @@ class Trip(object):
         points = self.getPointsActivity()
         daily_trip = self.splitActivityDays(points)
         days_trip = self.getTripNbDays(daily_trip)
-        
-        pprint.pprint(daily_trip)
-
-        return
         #while(True): TODO?
         if(days_trip > self.periode.days): 
             self.reduceTrip(daily_trip, days_trip)
@@ -53,16 +49,19 @@ class Trip(object):
         """
         return index of the longest day in the trip days list city
         """
+        pprint.pprint(daily_trip)
         duration_trip = [[[len(j)] for j in v] for v in daily_trip ]
         max_day_long_index = 0
         max_day_long_value = duration_trip[0][0]
         max_day_long_city = 0
         for v in range(0, len(duration_trip)):
-            for j in range(0, len(v)):
+            for j in range(0, len(duration_trip[v])):
                 if(duration_trip[v][j] > max_day_long_value):
                     max_day_long_index = j
                     max_day_long_value = duration_trip[v][j]
                     max_day_long_city = v
+
+        pprint.pprint(duration_trip)
         return [max_day_long_city, max_day_long_index]
 
     def getPointsActivity(self):
@@ -89,7 +88,7 @@ class Trip(object):
                 jours += [l]
                 jour += 1
             villes += [jours]
-        daily_trip += [villes]
+        daily_trip += villes
         return daily_trip
 
     def reduceTrip(self, daily_trip, nb_days):
@@ -103,6 +102,8 @@ class Trip(object):
         print "extends"
         nb_days =  self.getTripNbDays(daily_trip)
         city, index = self.getLonguerTripDay(daily_trip)
+        print city
+        print index
         max_day = daily_trip[city][index]
         events_max_day = max_day[:len(max_day)/2]
         events_new_day = max_day[len(max_day)/2:]
