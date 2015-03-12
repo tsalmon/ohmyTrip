@@ -37,13 +37,33 @@ class Trip(object):
         points = self.getPointsActivity()
         daily_trip = self.splitActivityDays(points)
         days_trip = self.getTripNbDays(daily_trip)
-        #while(True): TODO
+        
+        pprint.pprint(daily_trip)
+
+        return
+        #while(True): TODO?
         if(days_trip > self.periode.days): 
             self.reduceTrip(daily_trip, days_trip)
         elif (days_trip < self.periode.days): 
             self.extendsTrip(daily_trip, days_trip)
         else:
             return days_trip
+
+    def getLonguerTripDay(self, daily_trip):
+        """
+        return index of the longest day in the trip days list city
+        """
+        duration_trip = [[[len(j)] for j in v] for v in daily_trip ]
+        max_day_long_index = 0
+        max_day_long_value = duration_trip[0][0]
+        max_day_long_city = 0
+        for v in range(0, len(duration_trip)):
+            for j in range(0, len(v)):
+                if(duration_trip[v][j] > max_day_long_value):
+                    max_day_long_index = j
+                    max_day_long_value = duration_trip[v][j]
+                    max_day_long_city = v
+        return [max_day_long_city, max_day_long_index]
 
     def getPointsActivity(self):
         #TODO: delete return
@@ -52,7 +72,6 @@ class Trip(object):
         for p in self.places:
             activite[p] = []
             for i in self.user.getProfil():
-                interet = self.user.getInteret(i)
                 y = yelp_request(i, p)
                 activite[p] += y
         return activite
@@ -69,21 +88,28 @@ class Trip(object):
                 liste_place = [i for i in liste_place if i not in l]
                 jours += [l]
                 jour += 1
-            villes += jours
+            villes += [jours]
         daily_trip += [villes]
         return daily_trip
 
     def reduceTrip(self, daily_trip, nb_days):
+        print "reduce"
         nb_days =  self.getTripNbDays(daily_trip)
         while(nb_days > self.periode.days):
             print "%d  > %d"  % (self.periode.days, nb_days)
             nb_days -= 1
 
     def extendsTrip(self, daily_trip, nb_days):
+        print "extends"
         nb_days =  self.getTripNbDays(daily_trip)
-        while(nb_days < self.periode.days):
-            print "%d  > %d"  % (self.periode.days, nb_days)
-            nb_days += 1
+        city, index = self.getLonguerTripDay(daily_trip)
+        max_day = daily_trip[city][index]
+        events_max_day = max_day[:len(max_day)/2]
+        events_new_day = max_day[len(max_day)/2:]
+
+        #while(nb_days < self.periode.days):
+        #    print "%d  > %d"  % (self.periode.days, nb_days)
+        #    nb_days += 1
 
     def getId(self):
         return self.id
