@@ -126,7 +126,6 @@ class Trip(object):
             daily_trip[city][index1] += daily_trip[city][index2]
             del daily_trip[city][index2]
             nb_days =  self.getTripNbDays(daily_trip)
-        pprint.pprint(daily_trip)
         return daily_trip
 
     def extendsTrip(self, daily_trip, nb_days):
