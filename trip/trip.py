@@ -45,7 +45,7 @@ class Trip(object):
         else:
             return days_trip
 
-    def getLonguerTripDay(self, daily_trip):
+    def getLonguerTripDay(self, daily_trip, ignore_days = []):
         """
         return index of the longest day in the trip days list city
         """
@@ -55,12 +55,31 @@ class Trip(object):
         max_day_long_city = 0
         for v in range(0, len(duration_trip)):
             for j in range(0, len(duration_trip[v])):
-                if(duration_trip[v][j] > max_day_long_value):
+                ignore = (v, j) in ignore_days
+                if(not ignore and duration_trip[v][j] > max_day_long_value):
                     max_day_long_index = j
                     max_day_long_value = duration_trip[v][j]
                     max_day_long_city = v
 
         return [max_day_long_city, max_day_long_index]
+
+    def getShortestTripDay(self, daily_trip, ignore_days = []):
+        """
+        return index of the shortest day in the trip days list city
+        """
+        duration_trip = [[[len(j)] for j in v] for v in daily_trip ]
+        min_day_long_index = 0
+        min_day_long_value = duration_trip[0][0]
+        min_day_long_city = 0
+        for v in range(0, len(duration_trip)):
+            for j in range(0, len(duration_trip[v])):
+                ignore = (v, j) in ignore_days
+                if(not ignore and duration_trip[v][j] < min_day_long_value):
+                    min_day_long_index = j
+                    min_day_long_value = duration_trip[v][j]
+                    min_day_long_city = v
+
+        return [min_day_long_city, min_day_long_index]
 
     def getPointsActivity(self):
         #TODO: delete return
