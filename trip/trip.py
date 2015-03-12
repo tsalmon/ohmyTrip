@@ -77,7 +77,7 @@ class Trip(object):
                 if(not ignore and duration_trip[city][j] < min_day_long_value):
                     min_day_long_index = j
                     min_day_long_value = duration_trip[city][j]
-            return [city, min_day_long_index]
+            return min_day_long_index
         else:
             for v in range(0, len(duration_trip)):
                 for j in range(0, len(duration_trip[v])):
@@ -120,19 +120,13 @@ class Trip(object):
         """
         print "reduce"
         nb_days =  self.getTripNbDays(daily_trip)
-        city1, index1 = self.getShortestTripDay(daily_trip)
-        city2, index2 = self.getShortestTripDay(daily_trip, city1, [index1 ] )
-        print "day 1 : (%d, %d)" % (city1, index1) 
-        print "day 2 : (%d, %d)" % (city2, index2) 
-        return
-        while(nb_days < self.periode.days):
-            city, index = self.getLonguerTripDay(daily_trip)
-            max_day = daily_trip[city][index]
-            events_max_day = max_day[:len(max_day)/2] 
-            events_new_day = max_day[len(max_day)/2:]
-            daily_trip[city][index] = events_max_day
-            daily_trip[city].append(events_new_day)
+        while(nb_days > self.periode.days):
+            city, index1 = self.getShortestTripDay(daily_trip)
+            index2 = self.getShortestTripDay(daily_trip, city, [index1 ] )
+            daily_trip[city][index1] += daily_trip[city][index2]
+            del daily_trip[city][index2]
             nb_days =  self.getTripNbDays(daily_trip)
+        pprint.pprint(daily_trip)
         return daily_trip
 
     def extendsTrip(self, daily_trip, nb_days):
