@@ -23,7 +23,7 @@ class TripMethodTests(TestCase):
         """
         id_user = 0
         date_debut = datetime(2015, 7, 15)
-        date_fin = datetime(2015, 8, 3)
+        date_fin = datetime(2015, 8, 20)
 
         lieux = self.getCities()        
         user = UserFactory.get_user(id_user)
