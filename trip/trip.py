@@ -94,25 +94,25 @@ class Trip(object):
         nb_days =  self.getTripNbDays(daily_trip)
         while(nb_days > self.periode.days):
             print "%d  > %d"  % (self.periode.days, nb_days)
-            nb_days -= 1
+            nb_days =  self.getTripNbDays(daily_trip)
 
     def extendsTrip(self, daily_trip, nb_days):
+        """
+        split max day in two days while periode > number of days trip
+        """
         nb_days =  self.getTripNbDays(daily_trip)
         city, index = self.getLonguerTripDay(daily_trip)
 
         while(nb_days < self.periode.days and len(daily_trip[city][index]) > 1):
-            print "extends(%d) (city = %d, index = %d)" % (nb_days, city, index)
             city, index = self.getLonguerTripDay(daily_trip)
             max_day = daily_trip[city][index]
-            events_max_day = max_day[:len(max_day)/2]
+            events_max_day = max_day[:len(max_day)/2] 
             events_new_day = max_day[len(max_day)/2:]
             daily_trip[city][index] = events_max_day
             daily_trip[city].append(events_new_day)
             nb_days =  self.getTripNbDays(daily_trip)
         return daily_trip
-        #    print "%d  > %d"  % (self.periode.days, nb_days)
-        #    nb_days += 1
-
+    
     def getId(self):
         return self.id
 
