@@ -63,7 +63,7 @@ class Trip(object):
 
         return [max_day_long_city, max_day_long_index]
 
-    def getShortestTripDay(self, daily_trip, ignore_days = []):
+    def getShortestTripDay(self, daily_trip, city = None, ignore_days = []):
         """
         return index of the shortest day in the trip days list city
         """
@@ -71,21 +71,27 @@ class Trip(object):
         min_day_long_index = 0
         min_day_long_value = duration_trip[0][0]
         min_day_long_city = 0
-        for v in range(0, len(duration_trip)):
-            for j in range(0, len(duration_trip[v])):
-                ignore = (v, j) in ignore_days
-                if(not ignore and duration_trip[v][j] < min_day_long_value):
+        if(city is not None):
+            for j in range(0, len(duration_trip[city])):
+                ignore = j in ignore_days
+                if(not ignore and duration_trip[city][j] < min_day_long_value):
                     min_day_long_index = j
-                    min_day_long_value = duration_trip[v][j]
-                    min_day_long_city = v
-
-        return [min_day_long_city, min_day_long_index]
+                    min_day_long_value = duration_trip[city][j]
+            return [city, min_day_long_index]
+        else:
+            for v in range(0, len(duration_trip)):
+                for j in range(0, len(duration_trip[v])):
+                    if(duration_trip[v][j] < min_day_long_value):
+                        min_day_long_index = j
+                        min_day_long_value = duration_trip[v][j]
+                        min_day_long_city = v
+            return [min_day_long_city, min_day_long_index]
 
     def getPointsActivity(self):
         #TODO: delete return
         activite = {}
             
-        for p in self.places:
+        for p in self.places:   
             activite[p] = []
             for i in self.user.getProfil():
                 y = yelp_request(i, p)
@@ -109,11 +115,25 @@ class Trip(object):
         return daily_trip
 
     def reduceTrip(self, daily_trip, nb_days):
+        """
+        join 2 min days in one while periode > number of days trip
+        """
         print "reduce"
         nb_days =  self.getTripNbDays(daily_trip)
-        while(nb_days > self.periode.days):
-            print "%d  > %d"  % (self.periode.days, nb_days)
+        city1, index1 = self.getShortestTripDay(daily_trip)
+        city2, index2 = self.getShortestTripDay(daily_trip, city1, [index1 ] )
+        print "day 1 : (%d, %d)" % (city1, index1) 
+        print "day 2 : (%d, %d)" % (city2, index2) 
+        return
+        while(nb_days < self.periode.days):
+            city, index = self.getLonguerTripDay(daily_trip)
+            max_day = daily_trip[city][index]
+            events_max_day = max_day[:len(max_day)/2] 
+            events_new_day = max_day[len(max_day)/2:]
+            daily_trip[city][index] = events_max_day
+            daily_trip[city].append(events_new_day)
             nb_days =  self.getTripNbDays(daily_trip)
+        return daily_trip
 
     def extendsTrip(self, daily_trip, nb_days):
         """
