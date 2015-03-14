@@ -5,6 +5,7 @@ dj-database-url==0.3.0
 dj-static==0.0.6
 django-coverage==1.2.4
 django-toolbelt==0.0.1
+execnet==1.3.0
 facebook-sdk==0.4.0
 foursquare==20130707
 gunicorn==19.2.1
@@ -13,6 +14,10 @@ oauth2==1.5.211
 poster==0.8.1
 psycopg2==2.6
 py==1.4.26
+pytest==2.6.4
+pytest-xdist==1.11
+sauceclient==0.1.0
+selenium==2.45.0
 static3==0.5.1
 tox==1.8.0
 virtualenv==12.0.6
