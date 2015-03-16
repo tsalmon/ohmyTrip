@@ -74,8 +74,6 @@ TEST_RUNNER = 'django_coverage.coverage_runner.CoverageRunner'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
-STATIC_URL = '/static/'
-
 # Parse database configuration from $DATABASE_URL
 #import dj_database_url
 #DATABASES['default'] =  dj_database_url.config()

@@ -10,6 +10,7 @@ class TripIndex(generic.ListView):
     #paginate_by = 2
 
 def index(request):
+	connected = "member_id" in request.session
 	return render(request, 'home.html')
 
 """
