@@ -28,7 +28,6 @@
 		<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
 		<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:700|Open+Sans:400,700' rel='stylesheet' type='text/css'>
 
-
 		<!--[if ! lte IE 8]><!-->
 			<link rel="stylesheet" media="not print" href="static/css/style.css"/>
 		<!--<![endif]-->
@@ -57,6 +56,11 @@
 			</div>
 		</div>
 		<div class="container" id="content">
+		{% if connected %}
+			{% include 'user.html' %}
+		{% else %}
+			{% include 'visitor.html' %}
+		{% endif %}
 		</div>
 		<footer role="contentinfo">
 			<div class="container">
