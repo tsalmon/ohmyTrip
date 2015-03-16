@@ -1,0 +1,6 @@
+{% if connected %}
+	{% include 'user.html' %}
+{% else %}
+	{% include 'body/content/register.html' %}
+	{% include 'body/content/connexion.html' %}
+{% endif %}
