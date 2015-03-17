@@ -1,4 +1,4 @@
-# [HoMyTrip](https://www.youtube.com/watch?v=oYQNKWkWXDo&list=PLDA0F1A37DA65A754&index=60)
+# [ohmyTrip](https://www.youtube.com/watch?v=oYQNKWkWXDo&list=PLDA0F1A37DA65A754&index=60)
 
 ## Introduction
 
