@@ -13,7 +13,7 @@
         msViewportStyle.appendChild(
         	document.createTextNode(
         		"@-ms-viewport{width:auto!important}"
-        	)-
+        	)
         );
         document.getElementsByTagName("head")[0].
         appendChild(msViewportStyle);
@@ -24,10 +24,10 @@
 <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:700|Open+Sans:400,700' rel='stylesheet' type='text/css'>
 
 <!--[if ! lte IE 8]><!-->
-	<link rel="stylesheet" media="not print" href="static/css/style.css"/>
+	<link rel="stylesheet" media="not print" href="http://localhost:8000/static/css/style.css"/>
 <!--<![endif]-->
 
 <!--[if lte IE 8]>
-	<link rel="stylesheet" media="screen" href="static/css/legacy.css" />
+	<link rel="stylesheet" media="screen" href="http://localhost:8000/static/css/legacy.css" />
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
