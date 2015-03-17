@@ -1,15 +1,28 @@
+<h1>
+	Profil
+</h1>
+<p>
+	Entrez vos préférences selons les activitées présentées ci dessous, allant de 0 à 5, 0 manifestant un intérêt nul et 5 un fort interet
+</p>
+<form action="http://localhost:8000/register/profil" method="post">
+{% csrf_token %}
+<input type="hidden" name="user" value="{{user_id}}">
 <div class="row">
 	{% for activity in profil %}
 	<div class="col-sm-4">
 		<div class="panel panel-default">
 			<div class="panel-heading">	
-				<label for="rangeinput{{activity}}">{{ activity }}</label>
+				<label for="{{activity}}">{{ activity }}</label>
 			</div>
 			<div class="panel-body">
-				<input id="rangeinput{{activity}}" type="range" min="0" max="5" value="3" onchange="rangevalue{{activity}}.value=value"></input>
+				<input name="{{activity}}" id="{{activity}}" type="range" min="0" max="5" value="3" onchange="rangevalue{{activity}}.value=value"></input>
 				<output id="rangevalue{{activity}}">3</output>
 			</div>
 		</div>
 	</div>
 	{% endfor %}
 </div>
+<p>
+	<input type="submit"/>
+</p>
+</form>

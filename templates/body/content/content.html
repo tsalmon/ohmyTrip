@@ -1,7 +1,15 @@
 {% if connect %}
-	{% include 'body/content/user_interface.html' %}	
+	{% if newtrip %}
+		{% include 'body/content/newtrip.html' %}	
+	{% else %}
+		{% include 'body/content/trip.html' %}	
+	{% endif %}
 {% elif register %}
-	{% include 'body/content/profil.html' %}	
+	{% if has_profil %}
+		{% include 'body/content/trip.html' %}	
+	{% else %}
+		{% include 'body/content/profil.html' %}	
+	{% endif %}
 {% else %}
 	<div class="row">
 		{% include 'body/content/register.html' %}

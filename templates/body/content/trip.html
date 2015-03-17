@@ -1,0 +1,51 @@
+<!-- TODO: faire une macro twig pour les panels -->
+<form class="row" action="http://localhost:8000/trip/newtrip" method="post">
+    {% csrf_token %}
+	<div class="col-sm-4">
+		<div class="panel panel-default">
+			<div class="panel-heading">	
+				<h2 class="panel-title">
+					Destination
+				</h2>
+			</div>
+			<div class="panel-body">
+				<p>
+					<input type="text" name="city"/ placeholder="Ville" required>
+				</p>
+				<p>
+					<input type="text" name="country" placeholder="Pays" required/>
+				</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-sm-4">
+		<div class="panel panel-default">
+			<div class="panel-heading">	
+				<h2 class="panel-title">
+					Date du début du séjour
+				</h2>
+			</div>
+			<div class="panel-body">
+				<input type="date" name="start_trip" required/>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-sm-4">
+		<div class="panel panel-default">
+			<div class="panel-heading">	
+				<h2 class="panel-title">
+					Date de la fin du séjour
+				</h2>
+			</div>
+			<div class="panel-body">
+				<input type="date" name="end_trip" required/>
+			</div>
+		</div>
+	</div>
+
+	<p class="col-sm-4">
+		<input type="submit"/>
+	</p>
+</form>
