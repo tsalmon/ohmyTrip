@@ -4,8 +4,10 @@ from django.db import models
 
 class User(models.Model):
 	id_user = -1
-	name = models.CharField(max_length=200)
-	mail = models.EmailField(max_length=200)
+	lastname = models.CharField(max_length=50, default="", null=False)
+	firstname = models.CharField(max_length=50, default="", null=False)
+	mail = models.EmailField(max_length=70, default="", null=False)
+	password = models.CharField(max_length=10, default="", null=False)
 
 	def __init__(self, firstname, lastname, mail, password, profil):
 		User.id_user += 1
@@ -27,8 +29,10 @@ class User(models.Model):
 	def getInteret(self, place):
 		return self.profil[place]
 
-class Profil(object):
+class Profil(models.Model):
 	#TODO: make a class which abstract profil of a user
+	user = models.ForeignKey(User)
+
 	def __init__(self, profil_user):
 		self.profil = {}
 
