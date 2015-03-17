@@ -2,6 +2,7 @@
 
 from django.views import generic
 from django.shortcuts import render
+from django import forms
 from user import User
 
 class TripIndex(generic.ListView):

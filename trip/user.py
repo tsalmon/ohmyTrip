@@ -6,7 +6,7 @@ class User(models.Model):
 	id_user = -1
 	lastname = models.CharField(max_length=50, default="", null=False)
 	firstname = models.CharField(max_length=50, default="", null=False)
-	mail = models.EmailField(max_length=70, default="", null=False)
+	mail = models.EmailField(max_length=70, default="", null=False, unique=True)
 	password = models.CharField(max_length=10, default="", null=False)
 
 	def __init__(self, firstname, lastname, mail, password, profil):
@@ -32,7 +32,18 @@ class User(models.Model):
 class Profil(models.Model):
 	#TODO: make a class which abstract profil of a user
 	user = models.ForeignKey(User)
-
+	bar = models.SmallIntegerField()
+	museum = models.SmallIntegerField()
+	park = models.SmallIntegerField()
+	beach = models.SmallIntegerField()
+	skystation = models.SmallIntegerField()
+	Restaurant= models.SmallIntegerField()
+	NightClub= models.SmallIntegerField()
+	Zoo= models.SmallIntegerField()
+	Bridge= models.SmallIntegerField()
+	Board= models.SmallIntegerField()
+	Church= models.SmallIntegerField()
+	Landmarks= models.SmallIntegerField()
 	def __init__(self, profil_user):
 		self.profil = {}
 

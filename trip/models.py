@@ -26,7 +26,7 @@ class UserFactory(Factory):
 	@classmethod
 	def create_user(self, firstname, lastname, mail, password, profil):
 		user = User(firstname, lastname, mail, password, profil)
-		UserFactory.users[user.getId()] = user
+		#UserFactory.users[user.getId()] = user 
 		return user
 
 
