@@ -2,4 +2,4 @@ homytrip/secret_settings.py
 db.sqlite3
 *.pyc
 venv/
-.coverage
+.coveragetrip/migrations/
