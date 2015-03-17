@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-
+from django.shortcuts import HttpResponse
 from django.views import generic
 from django.shortcuts import render
 from django import forms

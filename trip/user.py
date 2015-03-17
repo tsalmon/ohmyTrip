@@ -3,13 +3,17 @@
 from django.db import models
 
 class User(models.Model):
-	id_user = -1
 	lastname = models.CharField(max_length=50, default="", null=False)
 	firstname = models.CharField(max_length=50, default="", null=False)
 	mail = models.EmailField(max_length=70, default="", null=False, unique=True)
 	password = models.CharField(max_length=10, default="", null=False)
 
+	def __str__(self):
+		return self.mail
+
+	"""
 	def __init__(self, firstname, lastname, mail, password, profil):
+		super(lastname=lastname, firstname=firstname, mail=mail, password=password)
 		User.id_user += 1
 		self.firstname = firstname
 		self.lastname = lastname
@@ -19,9 +23,12 @@ class User(models.Model):
 		self.id = User.id_user
 		self.profil = profil
 		print "create user (%d)" % self.id
-
+	"""
 	def getId(self):
 		return self.id
+
+	def setProfil(self, profil):
+		self.profil = profil
 
 	def getProfil(self):
 		return self.profil
