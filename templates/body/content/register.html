@@ -1,17 +1,28 @@
-<form action="http://localhost:8000/register/" method="post">
-    {% csrf_token %}
-	<h1>Register</h1>
-	<p>
-		<input type="text" placeholder="Firstname" name="firstname" required />
-	</p>
-	<p>
-		<input type="text" placeholder="Lastname" name="lastname" required/>
-	</p>
-	<p>
-		<input type="password" placeholder="Password" name="password" required/>
-	<p>
-	<p>
-		<input type="submit"/>
-	</p>
-</form>
-</section>
+<div class="col-sm-4">
+	<div class="panel panel-default">
+		<div class="panel-heading">	
+			<h2 class="panel-title">
+				Register
+			</h2>
+		</div>
+		<form class="panel-body" action="http://localhost:8000/register/" method="post">
+		    {% csrf_token %}
+			<h1></h1>
+			<p>
+				<input type="text" placeholder="Firstname" name="firstname" required />
+			</p>
+			<p>
+				<input type="text" placeholder="Lastname" name="lastname" required/>
+			</p>
+			<p>
+				<input type="mail" placeholder="mail" name="mail" required/>
+			</p>
+			<p>
+				<input type="password" placeholder="Password" name="password" required/>
+			<p>
+			<p>
+				<input type="submit"/>
+			</p>
+		</form>
+	</div>
+</div>

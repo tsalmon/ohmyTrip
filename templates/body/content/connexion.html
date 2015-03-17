@@ -1,3 +1,21 @@
-<form>
-	<label for=""></label><input >
-</form>
+<div class="col-sm-4">
+	<div class="panel panel-default">
+		<div class="panel-heading">	
+			<h2 class="panel-title">
+				Connexion
+			</h2>
+		</div>
+		<form class="panel-body" action="http://localhost:8000/connexion/" method="post">
+		    {% csrf_token %}
+		    <p>
+				<input type="mail" placeholder="mail" name="mail" required/>
+			</p>
+			<p>
+				<input type="password" placeholder="Password" name="password" required/>
+			<p>
+			<p>
+				<input type="submit"/>
+			</p>
+		</form>
+	</div>
+</div>

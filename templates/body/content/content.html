@@ -3,6 +3,8 @@
 {% elif register %}
 	{% include 'body/content/profil.html' %}	
 {% else %}
-	{% include 'body/content/register.html' %}
-	{% include 'body/content/connexion.html' %}
+	<div class="row">
+		{% include 'body/content/register.html' %}
+		{% include 'body/content/connexion.html' %}
+	</div>
 {% endif %}
