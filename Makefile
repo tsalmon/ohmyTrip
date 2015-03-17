@@ -13,6 +13,10 @@ COVERFILE:=.coverage
 freeze: $(VENV)
 	$(PIP) freeze >| requirements.txt
 
+install:
+	virtualenv $(VENV)
+	deps
+
 $(VENV):
 	virtualenv $@
 
