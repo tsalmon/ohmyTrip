@@ -1,9 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import HttpResponse, render
 from django.template import Template, Context
 from trip.models import UserFactory
+from trip.user import User
+from trip.place import *
 import pprint
 
 def index(request):
+	profil_choices = [ "Bar", "Museum", "Park", "Beach", "Skystation", "Restaurant", "NightClub", "Zoo", "Bridge", "Board", "Church", "Landmarks"]
 	#pprint.pprint(request.POST)
 	firstname = request.POST['firstname'] 
 	lastname = request.POST['lastname']
@@ -11,6 +14,29 @@ def index(request):
 	password = request.POST["password"]
 	profil = {}
 	user = UserFactory.create_user(firstname, lastname, mail, password, profil)
+	user.save()
 	#pprint.pprint(user.getId())
-	profil_choices = [ "bar", "Museum", "Park", "Beach", "Skystation", "Restaurant", "NightClub", "Zoo", "Bridge", "Board", "Church", "Landmarks"]
-	return render(request, 'home.html', { 'register': True, "profil" : profil_choices, })
+	return render(request, 'home.html', { 'register': True, "profil" : profil_choices, 'user_id' : user.getId()})
+
+def profil(request):
+	profil_user = {}
+	profil_choices = [ "Bar", "Museum", "Park", "Beach", "SkyStation", "Restaurant", "NightClub", "Zoo", "Bridge", "Board", "Church", "Landmarks"]
+	for i in request.POST:
+		if i in profil_choices:
+			profil_user[eval(i)] = request.POST[i]
+	user = User.objects.get(id=request.POST['user'])
+	user.setProfil(profil_user)
+	request.session['user'] = user
+	return render(request, "home.html", {'register': True, "has_profil": True})
+
+def login(request):
+    if request.method == 'POST':
+        m = Users.objects.get(username=request.POST['username'])
+        if m.password == request.POST['password']:
+            request.session['member_id'] = m.id
+            return HttpResponse("You're logged in.")
+        else:
+            return HttpResponse("Your username and password didn't match.")
+    else :
+        form = LogginForm()
+        return render_to_response('loggin/index.html', { 'form': form, }, context_instance=RequestContext(request))
