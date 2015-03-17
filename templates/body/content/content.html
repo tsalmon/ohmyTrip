@@ -1,10 +1,10 @@
-{% if connected %}
-	{% include 'body/content/user_interface.html' %}
+{% if connect %}
+	{% include 'body/content/user_interface.html' %}	
 {% elif register %}
 	{% include 'body/content/profil.html' %}	
 {% else %}
 	<div class="row">
 		{% include 'body/content/register.html' %}
 		{% include 'body/content/connexion.html' %}
-	</div>
+	</div>	
 {% endif %}

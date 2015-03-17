@@ -1,1 +1,15 @@
-profil
+<div class="row">
+	{% for activity in profil %}
+	<div class="col-sm-4">
+		<div class="panel panel-default">
+			<div class="panel-heading">	
+				<label for="rangeinput{{activity}}">{{ activity }}</label>
+			</div>
+			<div class="panel-body">
+				<input id="rangeinput{{activity}}" type="range" min="0" max="5" value="3" onchange="rangevalue{{activity}}.value=value"></input>
+				<output id="rangevalue{{activity}}">3</output>
+			</div>
+		</div>
+	</div>
+	{% endfor %}
+</div>
