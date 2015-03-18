@@ -9,7 +9,7 @@ except:
 
 class Trip(object):
     """
-    
+    Managing Trip
     """
     id_sejour = -1
 

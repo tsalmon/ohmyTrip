@@ -48,8 +48,26 @@ class TripMethodTests(TestCase):
     	"""
     	profil = {
     		Museum : 1,
+            Park: 1,
+            Beach: 0,
+            Restaurant: 1,
+            SkyStation:0,
             Bar: 2,
+            NightClub: 1,
             Bridge : 1,
             Landmarks: 1,
+            Zoo: 1,
+            Church: 0,
     	}
+
+    church= models.SmallIntegerField()
+    landmarks= models.SmallIntegerField()
+
+
+
+
+
+
+
+
     	user = UserFactory.create_user("Salmon", "Thomas", "th_s@hotmail.fr", "mdp", profil)

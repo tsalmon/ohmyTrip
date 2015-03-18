@@ -7,6 +7,9 @@
 		</div>
 		<form class="panel-body" action="http://localhost:8000/connexion/" method="post">
 		    {% csrf_token %}
+			{% if connect_fail %}
+				Echec d'authentification
+			{% endif %}
 		    <p>
 				<input type="mail" placeholder="mail" name="mail" required/>
 			</p>

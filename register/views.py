@@ -26,17 +26,5 @@ def profil(request):
 			profil_user[eval(i)] = request.POST[i]
 	user = User.objects.get(id=request.POST['user'])
 	user.setProfil(profil_user)
-	request.session['user'] = user
+	request.session['user'] = user.id
 	return render(request, "home.html", {'register': True, "has_profil": True})
-
-def login(request):
-    if request.method == 'POST':
-        m = Users.objects.get(username=request.POST['username'])
-        if m.password == request.POST['password']:
-            request.session['member_id'] = m.id
-            return HttpResponse("You're logged in.")
-        else:
-            return HttpResponse("Your username and password didn't match.")
-    else :
-        form = LogginForm()
-        return render_to_response('loggin/index.html', { 'form': form, }, context_instance=RequestContext(request))

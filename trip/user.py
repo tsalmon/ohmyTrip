@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-
+from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 
 class User(models.Model):
@@ -27,8 +27,20 @@ class User(models.Model):
 	def getId(self):
 		return self.id
 
-	def setProfil(self, profil):
-		self.profil = profil
+	def getSelf(self):
+		return self
+
+	def setProfil(self, p):
+		#p = Profil.objects.get(user=request.POST['mail'])
+		try:
+			self.profil = Profil.objects.get(user=self)
+		except ObjectDoesNotExist:
+			d = {}
+			for item in p:
+				d[item.__name__.lower()] = int(p[item])
+			print d
+			self.profil = Profil(user=self, **d)
+			self.profil.save()
 
 	def getProfil(self):
 		return self.profil
@@ -44,15 +56,10 @@ class Profil(models.Model):
 	park = models.SmallIntegerField()
 	beach = models.SmallIntegerField()
 	skystation = models.SmallIntegerField()
-	Restaurant= models.SmallIntegerField()
-	NightClub= models.SmallIntegerField()
-	Zoo= models.SmallIntegerField()
-	Bridge= models.SmallIntegerField()
-	Board= models.SmallIntegerField()
-	Church= models.SmallIntegerField()
-	Landmarks= models.SmallIntegerField()
-	def __init__(self, profil_user):
-		self.profil = {}
-
-		for item in profil_user:
-			self.profil[item] = item(profil_user[item])
+	restaurant= models.SmallIntegerField()
+	nightclub= models.SmallIntegerField()
+	zoo= models.SmallIntegerField()
+	bridge= models.SmallIntegerField()
+	board= models.SmallIntegerField()
+	church= models.SmallIntegerField()
+	landmarks= models.SmallIntegerField()
