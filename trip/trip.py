@@ -22,8 +22,9 @@ class Trip(object):
         self.user = user
         self.id = Trip.id_sejour
         self.trip = self.makeTrip()
-        print "create trip (%d)" % self.id
-        print self.trip
+
+    def getTrip(self):
+        return self.trip
 
     def placesToString(self, liste_place):
         s = ""
@@ -36,11 +37,8 @@ class Trip(object):
 
     def makeTrip(self):
         points = self.getPointsActivity()
-        print "get point"
         daily_trip = self.splitActivityDays(points)
-        print "split"
         days_trip = self.getTripNbDays(daily_trip)
-        print "getTripNbDays"
         #while(True): TODO?
         if(days_trip > self.periode.days): 
             return self.reduceTrip(daily_trip, days_trip)

@@ -27,4 +27,4 @@ def newtrip(request):
 	lieu = [City(request.POST["city"], request.POST["region"], request.POST["country"])]
 	user = UserFactory.get_user(request.session["user"])
 	sejour = TripFactory.create_sejour(start, end, lieu, user)
-	return render(request, "home.html", {"connect" : True, "newtrip" : True})
+	return render(request, "home.html", {"connect" : True, "newtrip" : True, "sejour": sejour.getTrip()})

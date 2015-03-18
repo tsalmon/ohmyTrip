@@ -1,3 +1,5 @@
+# -*- coding: UTF-8 -*-
+
 from django.shortcuts import HttpResponse, render
 from django.template import Template, Context
 from trip.models import UserFactory

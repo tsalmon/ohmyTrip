@@ -1,19 +1,13 @@
-<ul>
+<ul> 
 {% for v in sejour %}
 	<li>
-	<ul>
-	{% for j in v %}
-		<li>
-			<ul>
-		{% for place in j%}
+		<ul> 
+		{% for p in v%}
 			<li>
-				{{ place }}
+				{{ p }}
 			</li>
 		{% endfor %}
 		</ul>
-		</li>
-	{% endfor %}
-	</ul>
-	</il>
+	</li>
 {% endfor %}
 </ul>

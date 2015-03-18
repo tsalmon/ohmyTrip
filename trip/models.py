@@ -1,3 +1,6 @@
+# -*- coding: UTF-8 -*-
+
+
 from django.db import models
 from place import *
 from trip import Trip
