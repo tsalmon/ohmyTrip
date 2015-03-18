@@ -6,6 +6,8 @@ from user import User, Profil
 class UserAdmin(admin.ModelAdmin):
 	fields = ['firstname', 'lastname', 'mail', 'password']
 
+class ProfilAdmin(admin.ModelAdmin):
+	fields = ["user"]
 
 admin.site.register(User, UserAdmin)
-admin.site.register(Profil)
+admin.site.register(Profil, ProfilAdmin)

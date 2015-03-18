@@ -20,7 +20,12 @@ class UserFactory(Factory):
 	@classmethod
 	def get_user(self, id_user):
 		if id_user not in UserFactory.users:
-			return Exception("not exist")
+			try:
+				u = User.objects.get(id=id_user)
+				UserFactory.users[id_user] = u
+				return u
+			except ObjectDoesNotExist:
+				return Exception("not exist")
 		return UserFactory.users[id_user]
 
 	@classmethod

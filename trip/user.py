@@ -1,12 +1,14 @@
 # -*- coding: UTF-8 -*-
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
+from place import *
 
 class User(models.Model):
 	lastname = models.CharField(max_length=50, default="", null=False)
 	firstname = models.CharField(max_length=50, default="", null=False)
 	mail = models.EmailField(max_length=70, default="", null=False, unique=True)
 	password = models.CharField(max_length=10, default="", null=False)
+	profil = None
 
 	def __str__(self):
 		return self.mail
@@ -43,10 +45,28 @@ class User(models.Model):
 				d[item.__name__.lower()] = int(p[item])
 			print d
 			self.profil = Profil(user=self, **d)
-			#self.profil.save()
+			self.profil.save()
 
 	def getProfil(self):
-		return self.profil
+		if self.profil == None :
+			#self.profil = Profil.objects.get(user=self)
+			#return self.profil
+
+			self.profil = {
+	    		Museum : 1,
+	            Park: 1,
+	            Beach: 0,
+	            Restaurant: 1,
+	            SkyStation:0,
+	            Bar: 2,
+	            NightClub: 1,
+	            Bridge : 1,
+	            Landmarks: 1,
+	            Zoo: 1,
+	            Church: 0,
+    		}
+ 
+   		return self.profil
 
 	def getInteret(self, place):
 		return self.profil[place]
