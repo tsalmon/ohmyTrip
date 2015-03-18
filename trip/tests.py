@@ -14,19 +14,20 @@ class TripMethodTests(TestCase):
         nantes = City("Nantes", "France", "Pays-de-la-Loire")
         brest  = City("Brest", "France", "Bretagne")
         hambourg = City("Hambourg", "Allemagne", "Hambourg")
-        return [paris, nantes, brest]
+        return [paris]
 
 
     def test_new_trip_longer_than_periode(self):
         """
         make a trip at Paris, Nantes and Brest from 15/07/15 to 03/08/15 
         """
-        id_user = 0
+        id_user = 1
         date_debut = datetime(2015, 7, 15)
         date_fin = datetime(2015, 8, 20)
 
         lieux = self.getCities()        
         user = UserFactory.get_user(id_user)
+        print user
         sejour = TripFactory.create_sejour(date_debut, date_fin, lieux, user)
 
 
@@ -34,7 +35,7 @@ class TripMethodTests(TestCase):
         """
         make a trip at Paris, Nantes and Brest from 15/07/15 to 03/08/15 
         """
-        id_user = 0
+        id_user = 1
         date_debut = datetime(2015, 7, 25)
         date_fin = datetime(2015, 8, 3)
 
@@ -59,15 +60,4 @@ class TripMethodTests(TestCase):
             Zoo: 1,
             Church: 0,
     	}
-
-    church= models.SmallIntegerField()
-    landmarks= models.SmallIntegerField()
-
-
-
-
-
-
-
-
     	user = UserFactory.create_user("Salmon", "Thomas", "th_s@hotmail.fr", "mdp", profil)

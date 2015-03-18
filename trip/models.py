@@ -26,6 +26,9 @@ class UserFactory(Factory):
 	@classmethod
 	def create_user(self, firstname, lastname, mail, password, profil):
 		user = User(firstname=firstname, lastname=lastname, mail=mail, password=password)
+		user.save()
+		print "create user (%s)" % (user.id)
+		UserFactory.users[user.id] = user
 		user.setProfil(profil)
 		return user
 

@@ -31,16 +31,19 @@ class User(models.Model):
 		return self
 
 	def setProfil(self, p):
+		self.profil = p
+		return 
 		#p = Profil.objects.get(user=request.POST['mail'])
 		try:
 			self.profil = Profil.objects.get(user=self)
 		except ObjectDoesNotExist:
 			d = {}
+			print p
 			for item in p:
 				d[item.__name__.lower()] = int(p[item])
 			print d
 			self.profil = Profil(user=self, **d)
-			self.profil.save()
+			#self.profil.save()
 
 	def getProfil(self):
 		return self.profil

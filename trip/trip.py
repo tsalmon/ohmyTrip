@@ -21,8 +21,9 @@ class Trip(object):
         self.places = places
         self.user = user
         self.id = Trip.id_sejour
-        self.makeTrip()
+        self.trip = self.makeTrip()
         print "create trip (%d)" % self.id
+        print self.trip
 
     def placesToString(self, liste_place):
         s = ""
@@ -35,13 +36,16 @@ class Trip(object):
 
     def makeTrip(self):
         points = self.getPointsActivity()
+        print "get point"
         daily_trip = self.splitActivityDays(points)
+        print "split"
         days_trip = self.getTripNbDays(daily_trip)
+        print "getTripNbDays"
         #while(True): TODO?
         if(days_trip > self.periode.days): 
-            self.reduceTrip(daily_trip, days_trip)
+            return self.reduceTrip(daily_trip, days_trip)
         elif (days_trip < self.periode.days): 
-            self.extendsTrip(daily_trip, days_trip)
+            return self.extendsTrip(daily_trip, days_trip)
         else:
             return days_trip
 
@@ -90,7 +94,7 @@ class Trip(object):
     def getPointsActivity(self):
         #TODO: delete return
         activite = {}
-            
+        
         for p in self.places:   
             activite[p] = []
             for i in self.user.getProfil():
@@ -105,7 +109,9 @@ class Trip(object):
             liste_place = activite[place]
             jours = []
             jour = 0
-            while(len(liste_place) > 0):
+            rounds = 0;
+            while(rounds < 10 and len(liste_place) > 1):
+                rounds += 1
                 l = self.chooses_items_per_day(liste_place, 720)
                 liste_place = [i for i in liste_place if i not in l]
                 jours += [l]
