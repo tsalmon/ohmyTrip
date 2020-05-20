@@ -9,7 +9,7 @@ execnet==1.3.0
 facebook-sdk==0.4.0
 foursquare==20130707
 gunicorn==19.7.0
-httplib2==0.9
+httplib2==0.18.0
 oauth2==1.5.211
 poster==0.8.1
 psycopg2==2.6
